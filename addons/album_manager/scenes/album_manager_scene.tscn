@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bs3f7leqohnnl"]
+[gd_scene load_steps=17 format=3 uid="uid://bs3f7leqohnnl"]
 
 [ext_resource type="Script" uid="uid://dqkm8urvqq5a5" path="res://addons/album_manager/scripts/album_manager_scene.gd" id="1_g18ns"]
 [ext_resource type="Texture2D" uid="uid://c01nb4arj0fcb" path="res://album_images/catto4.jpg" id="2_o35xj"]
@@ -6,7 +6,10 @@
 [ext_resource type="Script" uid="uid://b2xaeyoncaaeo" path="res://extend_resource/song_data.gd" id="3_o35xj"]
 [ext_resource type="Texture2D" uid="uid://cn6630kd7qeyk" path="res://album_images/catto2.jpg" id="4_lrshs"]
 [ext_resource type="Texture2D" uid="uid://dfnxnltnslu8" path="res://album_images/catto3.jpg" id="4_sfj2q"]
-[ext_resource type="PackedScene" uid="uid://bsysv5vc6pg4w" path="res://addons/album_manager/scenes/album_group_vbox.tscn" id="7_o35xj"]
+[ext_resource type="Texture2D" uid="uid://cicscd5nfe747" path="res://album_images/catto5.jpg" id="7_3mxub"]
+[ext_resource type="Texture2D" uid="uid://b1pxeaddddci3" path="res://album_images/catto6.jpg" id="8_2jib6"]
+[ext_resource type="Script" uid="uid://npkea5cvjx3r" path="res://extend_resource/album_list.gd" id="9_3j5ss"]
+[ext_resource type="Script" uid="uid://ncrpq38hfwe8" path="res://addons/album_manager/scripts/main_ui_vbox.gd" id="10_3mxub"]
 
 [sub_resource type="Resource" id="Resource_vohxg"]
 script = ExtResource("3_o35xj")
@@ -31,6 +34,26 @@ album_title = "Makanan"
 song_list = Array[ExtResource("3_o35xj")]([SubResource("Resource_vohxg"), SubResource("Resource_mbfnp")])
 metadata/_custom_type_script = "uid://cryeeoobjsoqx"
 
+[sub_resource type="Resource" id="Resource_3mxub"]
+script = ExtResource("3_o35xj")
+song_cover = ExtResource("8_2jib6")
+song_title = "title3"
+song_path = ""
+chart_path = ""
+metadata/_custom_type_script = "uid://b2xaeyoncaaeo"
+
+[sub_resource type="Resource" id="Resource_2jib6"]
+script = ExtResource("2_sfj2q")
+album_cover = ExtResource("7_3mxub")
+album_title = "album2"
+song_list = Array[ExtResource("3_o35xj")]([SubResource("Resource_3mxub")])
+metadata/_custom_type_script = "uid://cryeeoobjsoqx"
+
+[sub_resource type="Resource" id="Resource_3j5ss"]
+script = ExtResource("9_3j5ss")
+album_list = Array[ExtResource("2_sfj2q")]([SubResource("Resource_cj0mw"), SubResource("Resource_2jib6")])
+metadata/_custom_type_script = "uid://npkea5cvjx3r"
+
 [node name="AlbumManagerScene" type="VBoxContainer"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,10 +64,12 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_g18ns")
 album = SubResource("Resource_cj0mw")
+album_collection = SubResource("Resource_3j5ss")
 metadata/_edit_lock_ = true
 
 [node name="UILayoutHbox" type="HBoxContainer" parent="."]
 layout_mode = 2
+size_flags_vertical = 3
 metadata/_edit_lock_ = true
 
 [node name="Spacer" type="Control" parent="UILayoutHbox"]
@@ -58,7 +83,6 @@ metadata/_edit_lock_ = true
 
 [node name="ToolbarHbox" type="HBoxContainer" parent="UILayoutHbox/MainAddonVbox"]
 layout_mode = 2
-metadata/_edit_lock_ = true
 
 [node name="RefreshBtn" type="Button" parent="UILayoutHbox/MainAddonVbox/ToolbarHbox"]
 layout_mode = 2
@@ -69,13 +93,24 @@ layout_mode = 2
 
 [node name="MainUIScroll" type="Node" parent="UILayoutHbox/MainAddonVbox"]
 
-[node name="MainUIVbox" type="VBoxContainer" parent="UILayoutHbox/MainAddonVbox"]
+[node name="ScrollContainer" type="ScrollContainer" parent="UILayoutHbox/MainAddonVbox"]
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
+horizontal_scroll_mode = 0
+metadata/_edit_lock_ = true
 
-[node name="AlbumGroupVbox" parent="UILayoutHbox/MainAddonVbox/MainUIVbox" instance=ExtResource("7_o35xj")]
+[node name="MainUIVbox" type="VBoxContainer" parent="UILayoutHbox/MainAddonVbox/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("10_3mxub")
+
+[node name="AddItemBtn" type="Button" parent="UILayoutHbox/MainAddonVbox/ScrollContainer/MainUIVbox"]
+layout_mode = 2
+text = "+"
 
 [node name="Spacer2" type="Control" parent="UILayoutHbox"]
 custom_minimum_size = Vector2(10, 0)

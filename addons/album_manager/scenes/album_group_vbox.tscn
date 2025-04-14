@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsysv5vc6pg4w"]
+[gd_scene load_steps=5 format=3 uid="uid://bsysv5vc6pg4w"]
 
 [ext_resource type="Script" uid="uid://b3eh604q4sp0o" path="res://addons/album_manager/scripts/album_group_vbox.gd" id="1_11rhl"]
+[ext_resource type="Texture2D" uid="uid://jg6ex33p0gvp" path="res://addons/album_manager/icons/Remove.svg" id="2_jt2ph"]
 
 [sub_resource type="Gradient" id="Gradient_sfj2q"]
 offsets = PackedFloat32Array(0)
@@ -17,6 +18,14 @@ metadata/_edit_lock_ = true
 [node name="AlbumTitleHbox" type="HBoxContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="Spacer" type="Control" parent="AlbumTitleHbox"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="RemoveBtn" type="Button" parent="AlbumTitleHbox"]
+layout_mode = 2
+icon = ExtResource("2_jt2ph")
 
 [node name="AlbumCover" type="TextureRect" parent="AlbumTitleHbox"]
 unique_name_in_owner = true
@@ -42,7 +51,16 @@ metadata/_edit_lock_ = true
 
 [node name="AddItemBtn" type="Button" parent="SongPanelListHFlow"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 210)
 layout_mode = 2
 text = "+"
 
+[node name="Spacer" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+
+[connection signal="pressed" from="AlbumTitleHbox/RemoveBtn" to="." method="_on_remove_btn_pressed"]
 [connection signal="toggled" from="AlbumTitleHbox/AlbumNameBtn" to="." method="_on_album_name_btn_toggled"]

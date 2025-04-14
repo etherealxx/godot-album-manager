@@ -19,12 +19,11 @@ func load_addon_mainscreen():
 	_make_visible(false)
 	#var inspector_plugin_inst = InspectorPlugin.new()
 	#add_inspector_plugin(inspector_plugin_inst)
-	
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		album_manager_node.refresh.connect(_on_addon_refresh)
-		pass
+		#EditorInterface.get_inspector().edited_object_changed.connect(_on_addon_refresh)
 
 func _exit_tree() -> void:
 	if Engine.is_editor_hint():

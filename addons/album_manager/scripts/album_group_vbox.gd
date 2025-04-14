@@ -1,6 +1,8 @@
 @tool
 extends InspectorSpawner
 
+signal remove_this_panel
+
 const SONG_PANEL = preload("res://addons/album_manager/scenes/song_panel.tscn")
 
 @onready var songpanels_hflow: HFlowContainer = $SongPanelListHFlow
@@ -36,10 +38,12 @@ func _propname_matchcase_override(res_to_edit : Resource, prop_name : String):
 func _after_init_override():
 	mini_inspector.hide()
 
-func _prop_changed_override(prop : String, value : Variant):
-	if prop == prop_title_varname:
-		album_name_btn.text = value
-	pass
+func _prop_changed_override(prop_name : String, value : Variant):
+	match (prop_name):
+		prop_title_varname:
+			album_name_btn.text = value
+		prop_cover_varname:
+			album_cover.texture = value
 
 func init_songpanels(album : Resource, song_list : Array):
 	instantiate_inspector(album, song_list)
@@ -75,3 +79,6 @@ func _on_album_name_btn_toggled(toggled_on: bool) -> void:
 	if self.is_ancestor_of(mini_inspector):
 		#print("visible %s" % toggled_on)
 		mini_inspector.visible = toggled_on
+
+func _on_remove_btn_pressed() -> void:
+	remove_this_panel.emit()
