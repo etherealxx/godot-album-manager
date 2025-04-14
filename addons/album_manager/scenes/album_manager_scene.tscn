@@ -1,31 +1,24 @@
-[gd_scene load_steps=12 format=3 uid="uid://bs3f7leqohnnl"]
+[gd_scene load_steps=11 format=3 uid="uid://bs3f7leqohnnl"]
 
 [ext_resource type="Script" uid="uid://dqkm8urvqq5a5" path="res://addons/album_manager/scripts/album_manager_scene.gd" id="1_g18ns"]
+[ext_resource type="Texture2D" uid="uid://c01nb4arj0fcb" path="res://album_images/catto4.jpg" id="2_o35xj"]
 [ext_resource type="Script" uid="uid://cryeeoobjsoqx" path="res://extend_resource/album_data.gd" id="2_sfj2q"]
 [ext_resource type="Script" uid="uid://b2xaeyoncaaeo" path="res://extend_resource/song_data.gd" id="3_o35xj"]
-[ext_resource type="Resource" uid="uid://okusw12smdd1" path="res://extend_resource/album_collection/album_collection_140425.tres" id="4_83b5m"]
-[ext_resource type="Script" uid="uid://b3eh604q4sp0o" path="res://addons/album_manager/scripts/album_separator_vbox.gd" id="5_lrshs"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ay6w4"]
-size = Vector2(300, 200)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_3mxub"]
-size = Vector2(300, 200)
+[ext_resource type="Texture2D" uid="uid://cn6630kd7qeyk" path="res://album_images/catto2.jpg" id="4_lrshs"]
+[ext_resource type="Texture2D" uid="uid://dfnxnltnslu8" path="res://album_images/catto3.jpg" id="4_sfj2q"]
+[ext_resource type="PackedScene" uid="uid://bsysv5vc6pg4w" path="res://addons/album_manager/scenes/album_group_vbox.tscn" id="7_o35xj"]
 
 [sub_resource type="Resource" id="Resource_vohxg"]
 script = ExtResource("3_o35xj")
-song_cover = SubResource("PlaceholderTexture2D_3mxub")
+song_cover = ExtResource("4_sfj2q")
 song_title = "Donatku"
 song_path = "path"
 chart_path = "res://assets/charts/donatku_cutted.mboy"
 metadata/_custom_type_script = "uid://b2xaeyoncaaeo"
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2jib6"]
-size = Vector2(300, 200)
-
 [sub_resource type="Resource" id="Resource_mbfnp"]
 script = ExtResource("3_o35xj")
-song_cover = SubResource("PlaceholderTexture2D_2jib6")
+song_cover = ExtResource("4_lrshs")
 song_title = "Paman Datang"
 song_path = "path"
 chart_path = "res://assets/charts/paman_datang_cutted.json"
@@ -33,7 +26,7 @@ metadata/_custom_type_script = "uid://b2xaeyoncaaeo"
 
 [sub_resource type="Resource" id="Resource_cj0mw"]
 script = ExtResource("2_sfj2q")
-album_cover = SubResource("PlaceholderTexture2D_ay6w4")
+album_cover = ExtResource("2_o35xj")
 album_title = "Makanan"
 song_list = Array[ExtResource("3_o35xj")]([SubResource("Resource_vohxg"), SubResource("Resource_mbfnp")])
 metadata/_custom_type_script = "uid://cryeeoobjsoqx"
@@ -48,7 +41,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_g18ns")
 album = SubResource("Resource_cj0mw")
-album_list = ExtResource("4_83b5m")
 metadata/_edit_lock_ = true
 
 [node name="UILayoutHbox" type="HBoxContainer" parent="."]
@@ -72,9 +64,8 @@ metadata/_edit_lock_ = true
 layout_mode = 2
 text = "Refresh"
 
-[node name="InstanceTestBtn" type="Button" parent="UILayoutHbox/MainAddonVbox/ToolbarHbox"]
+[node name="HSeparator" type="HSeparator" parent="UILayoutHbox/MainAddonVbox"]
 layout_mode = 2
-text = "Instance Test"
 
 [node name="MainUIScroll" type="Node" parent="UILayoutHbox/MainAddonVbox"]
 
@@ -82,26 +73,12 @@ text = "Instance Test"
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="AlbumSeparatorVbox" type="VBoxContainer" parent="UILayoutHbox/MainAddonVbox/MainUIVbox"]
+[node name="AlbumGroupVbox" parent="UILayoutHbox/MainAddonVbox/MainUIVbox" instance=ExtResource("7_o35xj")]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("5_lrshs")
-metadata/_edit_lock_ = true
-
-[node name="SongPanelListHFlow" type="HFlowContainer" parent="UILayoutHbox/MainAddonVbox/MainUIVbox/AlbumSeparatorVbox"]
-layout_mode = 2
-metadata/_edit_use_anchors_ = true
-metadata/_edit_lock_ = true
-
-[node name="AddItemBtn" type="Button" parent="UILayoutHbox/MainAddonVbox/MainUIVbox/AlbumSeparatorVbox/SongPanelListHFlow"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "+"
 
 [node name="Spacer2" type="Control" parent="UILayoutHbox"]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
 [connection signal="pressed" from="UILayoutHbox/MainAddonVbox/ToolbarHbox/RefreshBtn" to="." method="_on_refresh_btn_pressed"]
-[connection signal="pressed" from="UILayoutHbox/MainAddonVbox/ToolbarHbox/InstanceTestBtn" to="." method="_on_instance_test_btn_pressed"]

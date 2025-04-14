@@ -29,6 +29,7 @@ func init_panel():
 	#mini_inspector.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	mini_inspector.custom_minimum_size.y = self.custom_minimum_size.y + 30.0
 	mini_inspector.draw_focus_border = false
+	mini_inspector.focus_exited.connect(_on_mini_inspector_focus_exited)
 
 	#mini_inspector.size_flags_horizontal = SIZE_EXPAND_FILL
 	#item_vbox.add_child(mini_inspector)
@@ -44,7 +45,7 @@ func init_panel():
 		var data_dict_list : Array[Dictionary]
 		for prop_dict : Dictionary in song_data.get_property_list():
 			# custom exported variables
-			if prop_dict["usage"] == 6 and (prop_dict["name"] not in INTERNAL_RESOURCE_PROP_NAMES):
+			if prop_dict["usage"] in [6, 4102] and (prop_dict["name"] not in INTERNAL_RESOURCE_PROP_NAMES):
 				#print(prop_dict)
 				data_dict_list.append(prop_dict)
 			elif prop_dict["name"] == 'script' and prop_dict["class_name"] == 'Script':
@@ -78,10 +79,14 @@ func init_panel():
 			prop_editor.update_property()
 			propname_edprop_map[prop_name] = prop_editor
 		print("panel initiated")
-		#@TODO make the textedit longer than the label name
 		#for edprop in mini_inspector_vbox.get_children():
 			#edprop.print_tree_pretty()
 			#break
+
+func _on_mini_inspector_focus_exited():
+	for edprop in mini_inspector_vbox.get_children():
+		if edprop is EditorProperty:
+			edprop.deselect()
 
 func _prop_changed(p_property: String, p_value, p_field: StringName, p_changing: bool) -> void:
 	if p_property == prop_title_varname:

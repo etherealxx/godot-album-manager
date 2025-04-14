@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsysv5vc6pg4w"]
+
+[ext_resource type="Script" uid="uid://b3eh604q4sp0o" path="res://addons/album_manager/scripts/album_group_vbox.gd" id="1_11rhl"]
+
+[sub_resource type="Gradient" id="Gradient_sfj2q"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.129412, 0.14902, 0.180392, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o35xj"]
+gradient = SubResource("Gradient_sfj2q")
+
+[node name="AlbumGroupVbox" type="VBoxContainer"]
+size_flags_horizontal = 3
+script = ExtResource("1_11rhl")
+metadata/_edit_lock_ = true
+
+[node name="AlbumTitleHbox" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AlbumCover" type="TextureRect" parent="AlbumTitleHbox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+texture = SubResource("GradientTexture2D_o35xj")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="AlbumNameBtn" type="CheckButton" parent="AlbumTitleHbox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Album1"
+
+[node name="InspectorBelowHere" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="SongPanelListHFlow" type="HFlowContainer" parent="."]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="AddItemBtn" type="Button" parent="SongPanelListHFlow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "+"
+
+[connection signal="toggled" from="AlbumTitleHbox/AlbumNameBtn" to="." method="_on_album_name_btn_toggled"]
