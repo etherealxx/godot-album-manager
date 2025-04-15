@@ -60,8 +60,8 @@ func instantiate_songpanel(song : Resource, song_list_ref : Array):
 
 func _on_add_item_pressed(song_list : Array):
 	var new_songdata = SongData.new()
-	for line in new_songdata.get_property_list():
-		print(line)
+	#for line in new_songdata.get_property_list():
+		#print(line)
 	song_list.append(new_songdata)
 	instantiate_songpanel(new_songdata, song_list)
 

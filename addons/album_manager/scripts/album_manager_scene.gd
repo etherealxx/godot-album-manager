@@ -39,14 +39,22 @@ func _ready() -> void:
 				after_load_album_collection(path_to_load)
 
 func attempt_load_album_collection(path : String) -> bool: # return the success status
-	var album_collection = ResourceLoader.load(path)
-	if (album_collection == Resource.new()) or album_collection is not AlbumCollection:
-		push_warning("Invalid selected resource. Must be an AlbumCollection")
+	if FileAccess.file_exists(path):
+		var album_collection = ResourceLoader.load(path)
+		
+		if (album_collection == Resource.new()) or album_collection is not AlbumCollection:
+			push_warning("Invalid selected resource. Must be an AlbumCollection.")
+			imported_path.text = ""
+			return false
+			
+		main_ui_vbox.init_albumgroups(album_collection, ARRAY_NAME)
+		return true
+		
+	else:
+		push_warning("Selected/saved path is invalid.")
 		imported_path.text = ""
 		return false
-	main_ui_vbox.init_albumgroups(album_collection, ARRAY_NAME)
-	return true
-	
+
 func _on_import_btn_pressed() -> void:
 	current_filedialog_mode = Mode.LOAD_EXISTING
 	album_collection_loader.file_mode = FileDialog.FILE_MODE_OPEN_FILE
