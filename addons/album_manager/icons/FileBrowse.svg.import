@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cicscd5nfe747"
-path="res://.godot/imported/catto5.jpg-6f7d44fde3b913e23de1b69b30a22ac5.ctex"
+uid="uid://bsrdntua0bslh"
+path="res://.godot/imported/FileBrowse.svg-137f539c596661b43662b4035295b571.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://album_images/catto5.jpg"
-dest_files=["res://.godot/imported/catto5.jpg-6f7d44fde3b913e23de1b69b30a22ac5.ctex"]
+source_file="res://addons/album_manager/icons/FileBrowse.svg"
+dest_files=["res://.godot/imported/FileBrowse.svg-137f539c596661b43662b4035295b571.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

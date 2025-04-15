@@ -1,58 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://bs3f7leqohnnl"]
+[gd_scene load_steps=4 format=3 uid="uid://bs3f7leqohnnl"]
 
 [ext_resource type="Script" uid="uid://dqkm8urvqq5a5" path="res://addons/album_manager/scripts/album_manager_scene.gd" id="1_g18ns"]
-[ext_resource type="Texture2D" uid="uid://c01nb4arj0fcb" path="res://album_images/catto4.jpg" id="2_o35xj"]
-[ext_resource type="Script" uid="uid://cryeeoobjsoqx" path="res://extend_resource/album_data.gd" id="2_sfj2q"]
-[ext_resource type="Script" uid="uid://b2xaeyoncaaeo" path="res://extend_resource/song_data.gd" id="3_o35xj"]
-[ext_resource type="Texture2D" uid="uid://cn6630kd7qeyk" path="res://album_images/catto2.jpg" id="4_lrshs"]
-[ext_resource type="Texture2D" uid="uid://dfnxnltnslu8" path="res://album_images/catto3.jpg" id="4_sfj2q"]
-[ext_resource type="Texture2D" uid="uid://cicscd5nfe747" path="res://album_images/catto5.jpg" id="7_3mxub"]
-[ext_resource type="Texture2D" uid="uid://b1pxeaddddci3" path="res://album_images/catto6.jpg" id="8_2jib6"]
-[ext_resource type="Script" uid="uid://npkea5cvjx3r" path="res://extend_resource/album_list.gd" id="9_3j5ss"]
+[ext_resource type="Texture2D" uid="uid://bsrdntua0bslh" path="res://addons/album_manager/icons/FileBrowse.svg" id="8_ay6w4"]
 [ext_resource type="Script" uid="uid://ncrpq38hfwe8" path="res://addons/album_manager/scripts/main_ui_vbox.gd" id="10_3mxub"]
-
-[sub_resource type="Resource" id="Resource_vohxg"]
-script = ExtResource("3_o35xj")
-song_cover = ExtResource("4_sfj2q")
-song_title = "Donatku"
-song_path = "path"
-chart_path = "res://assets/charts/donatku_cutted.mboy"
-metadata/_custom_type_script = "uid://b2xaeyoncaaeo"
-
-[sub_resource type="Resource" id="Resource_mbfnp"]
-script = ExtResource("3_o35xj")
-song_cover = ExtResource("4_lrshs")
-song_title = "Paman Datang"
-song_path = "path"
-chart_path = "res://assets/charts/paman_datang_cutted.json"
-metadata/_custom_type_script = "uid://b2xaeyoncaaeo"
-
-[sub_resource type="Resource" id="Resource_cj0mw"]
-script = ExtResource("2_sfj2q")
-album_cover = ExtResource("2_o35xj")
-album_title = "Makanan"
-song_list = Array[ExtResource("3_o35xj")]([SubResource("Resource_vohxg"), SubResource("Resource_mbfnp")])
-metadata/_custom_type_script = "uid://cryeeoobjsoqx"
-
-[sub_resource type="Resource" id="Resource_3mxub"]
-script = ExtResource("3_o35xj")
-song_cover = ExtResource("8_2jib6")
-song_title = "title3"
-song_path = ""
-chart_path = ""
-metadata/_custom_type_script = "uid://b2xaeyoncaaeo"
-
-[sub_resource type="Resource" id="Resource_2jib6"]
-script = ExtResource("2_sfj2q")
-album_cover = ExtResource("7_3mxub")
-album_title = "album2"
-song_list = Array[ExtResource("3_o35xj")]([SubResource("Resource_3mxub")])
-metadata/_custom_type_script = "uid://cryeeoobjsoqx"
-
-[sub_resource type="Resource" id="Resource_3j5ss"]
-script = ExtResource("9_3j5ss")
-album_list = Array[ExtResource("2_sfj2q")]([SubResource("Resource_cj0mw"), SubResource("Resource_2jib6")])
-metadata/_custom_type_script = "uid://npkea5cvjx3r"
 
 [node name="AlbumManagerScene" type="VBoxContainer"]
 anchors_preset = 15
@@ -63,8 +13,6 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_g18ns")
-album = SubResource("Resource_cj0mw")
-album_collection = SubResource("Resource_3j5ss")
 metadata/_edit_lock_ = true
 
 [node name="UILayoutHbox" type="HBoxContainer" parent="."]
@@ -88,6 +36,36 @@ layout_mode = 2
 layout_mode = 2
 text = "Refresh"
 
+[node name="VSeparator" type="VSeparator" parent="UILayoutHbox/MainAddonVbox/ToolbarHbox"]
+layout_mode = 2
+
+[node name="ImportResourceHbox" type="HBoxContainer" parent="UILayoutHbox/MainAddonVbox/ToolbarHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="UILayoutHbox/MainAddonVbox/ToolbarHbox/ImportResourceHbox"]
+layout_mode = 2
+text = "Import album collection from:"
+
+[node name="ImportedPath" type="TextEdit" parent="UILayoutHbox/MainAddonVbox/ToolbarHbox/ImportResourceHbox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+editable = false
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+empty_selection_clipboard_enabled = false
+scroll_fit_content_height = true
+
+[node name="ImportBtn" type="Button" parent="UILayoutHbox/MainAddonVbox/ToolbarHbox/ImportResourceHbox"]
+layout_mode = 2
+icon = ExtResource("8_ay6w4")
+
 [node name="HSeparator" type="HSeparator" parent="UILayoutHbox/MainAddonVbox"]
 layout_mode = 2
 
@@ -109,6 +87,7 @@ size_flags_vertical = 3
 script = ExtResource("10_3mxub")
 
 [node name="AddItemBtn" type="Button" parent="UILayoutHbox/MainAddonVbox/ScrollContainer/MainUIVbox"]
+visible = false
 layout_mode = 2
 text = "+"
 
@@ -116,4 +95,13 @@ text = "+"
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
+[node name="AlbumCollectionLoader" type="FileDialog" parent="."]
+title = "Open a File"
+initial_position = 1
+ok_button_text = "Open"
+file_mode = 0
+filters = PackedStringArray("*.res", "*.tres")
+
 [connection signal="pressed" from="UILayoutHbox/MainAddonVbox/ToolbarHbox/RefreshBtn" to="." method="_on_refresh_btn_pressed"]
+[connection signal="pressed" from="UILayoutHbox/MainAddonVbox/ToolbarHbox/ImportResourceHbox/ImportBtn" to="." method="_on_import_btn_pressed"]
+[connection signal="file_selected" from="AlbumCollectionLoader" to="." method="_on_album_collection_loader_file_selected"]

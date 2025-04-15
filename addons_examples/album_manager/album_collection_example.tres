@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="AlbumCollection" load_steps=14 format=3 uid="uid://dtl112s71da55"]
+
+[ext_resource type="Script" uid="uid://cryeeoobjsoqx" path="res://addons/album_manager/extend_resource/album_data.gd" id="1_8a3a8"]
+[ext_resource type="Texture2D" uid="uid://c01nb4arj0fcb" path="res://addons_examples/album_manager/cover_images/catto4.jpg" id="2_t3126"]
+[ext_resource type="Script" uid="uid://b2xaeyoncaaeo" path="res://addons/album_manager/extend_resource/song_data.gd" id="3_hphih"]
+[ext_resource type="Texture2D" uid="uid://dfnxnltnslu8" path="res://addons_examples/album_manager/cover_images/catto3.jpg" id="4_ypivu"]
+[ext_resource type="Texture2D" uid="uid://cn6630kd7qeyk" path="res://addons_examples/album_manager/cover_images/catto2.jpg" id="5_1bb45"]
+[ext_resource type="Texture2D" uid="uid://cicscd5nfe747" path="res://addons_examples/album_manager/cover_images/catto5.jpg" id="6_g10tt"]
+[ext_resource type="Texture2D" uid="uid://b1pxeaddddci3" path="res://addons_examples/album_manager/cover_images/catto6.jpg" id="7_k5oms"]
+[ext_resource type="Script" uid="uid://npkea5cvjx3r" path="res://addons/album_manager/extend_resource/album_collection.gd" id="8_uvh8k"]
+
+[sub_resource type="Resource" id="Resource_vohxg"]
+script = ExtResource("3_hphih")
+song_cover = ExtResource("4_ypivu")
+song_title = "Donatku"
+song_path = "path"
+chart_path = "res://assets/charts/donatku_cutted.mboy"
+metadata/_custom_type_script = "uid://b2xaeyoncaaeo"
+
+[sub_resource type="Resource" id="Resource_mbfnp"]
+script = ExtResource("3_hphih")
+song_cover = ExtResource("5_1bb45")
+song_title = "Paman Datang"
+song_path = "path"
+chart_path = "res://assets/charts/paman_datang_cutted.json"
+metadata/_custom_type_script = "uid://b2xaeyoncaaeo"
+
+[sub_resource type="Resource" id="Resource_cj0mw"]
+script = ExtResource("1_8a3a8")
+album_cover = ExtResource("2_t3126")
+album_title = "Makanan"
+song_list = Array[ExtResource("3_hphih")]([SubResource("Resource_vohxg"), SubResource("Resource_mbfnp")])
+metadata/_custom_type_script = "uid://cryeeoobjsoqx"
+
+[sub_resource type="Resource" id="Resource_3mxub"]
+script = ExtResource("3_hphih")
+song_cover = ExtResource("7_k5oms")
+song_title = "title3"
+song_path = ""
+chart_path = ""
+metadata/_custom_type_script = "uid://b2xaeyoncaaeo"
+
+[sub_resource type="Resource" id="Resource_2jib6"]
+script = ExtResource("1_8a3a8")
+album_cover = ExtResource("6_g10tt")
+album_title = "album2"
+song_list = Array[ExtResource("3_hphih")]([SubResource("Resource_3mxub")])
+metadata/_custom_type_script = "uid://cryeeoobjsoqx"
+
+[resource]
+script = ExtResource("8_uvh8k")
+album_list = Array[ExtResource("1_8a3a8")]([SubResource("Resource_cj0mw"), SubResource("Resource_2jib6")])
+metadata/_custom_type_script = "uid://npkea5cvjx3r"

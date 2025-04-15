@@ -5,9 +5,13 @@ const ALBUM_GROUP_VBOX = preload("res://addons/album_manager/scenes/album_group_
 
 @onready var add_item_btn: Button = $AddItemBtn
 
+func _ready() -> void:
+	add_item_btn.hide()
+
 func init_albumgroups(album_collection : Resource, prop_name : String):
 	for album in album_collection.get(prop_name):
 		instantiate_albumgroup(album, album.song_list)
+	add_item_btn.show()
 	add_item_btn.pressed.connect(
 		_on_add_item_pressed.bind(album_collection.get(prop_name)
 	))

@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://ctbtax71vfdgw"]
 
 [ext_resource type="Script" uid="uid://bt51tox2i3u40" path="res://addons/album_manager/scripts/song_panel.gd" id="1_e4sxf"]
-[ext_resource type="Script" uid="uid://b2xaeyoncaaeo" path="res://extend_resource/song_data.gd" id="2_7n476"]
-[ext_resource type="Texture2D" uid="uid://b4ofwu2057ghe" path="res://album_images/catto.jpg" id="3_lh6dj"]
+[ext_resource type="Script" uid="uid://b2xaeyoncaaeo" path="res://addons/album_manager/extend_resource/song_data.gd" id="2_7n476"]
+[ext_resource type="Texture2D" uid="uid://b4ofwu2057ghe" path="res://addons_examples/album_manager/cover_images/catto.jpg" id="3_lh6dj"]
 [ext_resource type="Texture2D" uid="uid://jg6ex33p0gvp" path="res://addons/album_manager/icons/Remove.svg" id="4_7n476"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vtob"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1pxeaddddci3"
-path="res://.godot/imported/catto6.jpg-01dd08d303588c77f227e0f6b665ca4b.ctex"
+uid="uid://b4ofwu2057ghe"
+path="res://.godot/imported/catto.jpg-b6c10b296d7a3b37e7cdb9872167aa1b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://album_images/catto6.jpg"
-dest_files=["res://.godot/imported/catto6.jpg-01dd08d303588c77f227e0f6b665ca4b.ctex"]
+source_file="res://addons_examples/album_manager/cover_images/catto.jpg"
+dest_files=["res://.godot/imported/catto.jpg-b6c10b296d7a3b37e7cdb9872167aa1b.ctex"]
 
 [params]
 
