@@ -1,8 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://ctbtax71vfdgw"]
+[gd_scene load_steps=5 format=3 uid="uid://ctbtax71vfdgw"]
 
 [ext_resource type="Script" uid="uid://bt51tox2i3u40" path="res://addons/album_manager/scripts/song_panel.gd" id="1_e4sxf"]
-[ext_resource type="Script" uid="uid://b2xaeyoncaaeo" path="res://addons/album_manager/extend_resource/song_data.gd" id="2_7n476"]
-[ext_resource type="Texture2D" uid="uid://b4ofwu2057ghe" path="res://addons_examples/album_manager/cover_images/catto.jpg" id="3_lh6dj"]
 [ext_resource type="Texture2D" uid="uid://jg6ex33p0gvp" path="res://addons/album_manager/icons/Remove.svg" id="4_7n476"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vtob"]
@@ -11,14 +9,6 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
-
-[sub_resource type="Resource" id="Resource_5e6gc"]
-script = ExtResource("2_7n476")
-song_cover = ExtResource("3_lh6dj")
-song_title = "Lagusihlagu"
-song_path = "placeholder"
-chart_path = "placeholder"
-metadata/_custom_type_script = "uid://b2xaeyoncaaeo"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lrshs"]
 bg_color = Color(0.211765, 0.239216, 0.290196, 1)
@@ -30,7 +20,6 @@ corner_radius_top_left = 5
 custom_minimum_size = Vector2(270, 150)
 theme_override_styles/panel = SubResource("StyleBoxFlat_5vtob")
 script = ExtResource("1_e4sxf")
-song_data = SubResource("Resource_5e6gc")
 
 [node name="PanelUIHbox" type="HBoxContainer" parent="."]
 layout_mode = 2

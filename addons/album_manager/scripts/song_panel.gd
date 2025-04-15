@@ -3,9 +3,11 @@ extends InspectorSpawner
 
 signal remove_this_panel
 
-@export var song_data : SongData
+#@export var song_data : SongData
 
 @onready var song_title_label: Label = %SongTitleLabel
+
+var song_data : SongData
 
 func _ready() -> void:
 	inspector_below_here = %InspectorBelowHere

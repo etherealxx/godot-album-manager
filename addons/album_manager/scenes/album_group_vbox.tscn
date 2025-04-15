@@ -10,7 +10,7 @@ colors = PackedColorArray(0.129412, 0.14902, 0.180392, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_o35xj"]
 gradient = SubResource("Gradient_sfj2q")
 
-[node name="AlbumGroupVbox" type="VBoxContainer"]
+[node name="AlbumGroupVbox" type="VBoxContainer" groups=["albumgroup"]]
 size_flags_horizontal = 3
 script = ExtResource("1_11rhl")
 metadata/_edit_lock_ = true

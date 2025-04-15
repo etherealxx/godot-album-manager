@@ -39,6 +39,15 @@ text = "Refresh"
 [node name="VSeparator" type="VSeparator" parent="UILayoutHbox/MainAddonVbox/ToolbarHbox"]
 layout_mode = 2
 
+[node name="CreateNewBtn" type="Button" parent="UILayoutHbox/MainAddonVbox/ToolbarHbox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Create New Album Collection"
+
+[node name="VSeparator2" type="VSeparator" parent="UILayoutHbox/MainAddonVbox/ToolbarHbox"]
+layout_mode = 2
+
 [node name="ImportResourceHbox" type="HBoxContainer" parent="UILayoutHbox/MainAddonVbox/ToolbarHbox"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -52,6 +61,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
+text = "res://addons_examples/album_manager/album_collection_example.tres"
 editable = false
 context_menu_enabled = false
 emoji_menu_enabled = false
@@ -65,6 +75,14 @@ scroll_fit_content_height = true
 [node name="ImportBtn" type="Button" parent="UILayoutHbox/MainAddonVbox/ToolbarHbox/ImportResourceHbox"]
 layout_mode = 2
 icon = ExtResource("8_ay6w4")
+
+[node name="VSeparator3" type="VSeparator" parent="UILayoutHbox/MainAddonVbox/ToolbarHbox"]
+layout_mode = 2
+
+[node name="CloseCurrentBtn" type="Button" parent="UILayoutHbox/MainAddonVbox/ToolbarHbox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Close Current Album Collection"
 
 [node name="HSeparator" type="HSeparator" parent="UILayoutHbox/MainAddonVbox"]
 layout_mode = 2
@@ -87,15 +105,20 @@ size_flags_vertical = 3
 script = ExtResource("10_3mxub")
 
 [node name="AddItemBtn" type="Button" parent="UILayoutHbox/MainAddonVbox/ScrollContainer/MainUIVbox"]
-visible = false
 layout_mode = 2
 text = "+"
+
+[node name="Spacer" type="Control" parent="UILayoutHbox/MainAddonVbox"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
 
 [node name="Spacer2" type="Control" parent="UILayoutHbox"]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
 [node name="AlbumCollectionLoader" type="FileDialog" parent="."]
+disable_3d = true
+anisotropic_filtering_level = 0
 title = "Open a File"
 initial_position = 1
 ok_button_text = "Open"
@@ -103,5 +126,7 @@ file_mode = 0
 filters = PackedStringArray("*.res", "*.tres")
 
 [connection signal="pressed" from="UILayoutHbox/MainAddonVbox/ToolbarHbox/RefreshBtn" to="." method="_on_refresh_btn_pressed"]
+[connection signal="pressed" from="UILayoutHbox/MainAddonVbox/ToolbarHbox/CreateNewBtn" to="." method="_on_create_new_btn_pressed"]
 [connection signal="pressed" from="UILayoutHbox/MainAddonVbox/ToolbarHbox/ImportResourceHbox/ImportBtn" to="." method="_on_import_btn_pressed"]
+[connection signal="pressed" from="UILayoutHbox/MainAddonVbox/ToolbarHbox/CloseCurrentBtn" to="." method="_on_close_current_btn_pressed"]
 [connection signal="file_selected" from="AlbumCollectionLoader" to="." method="_on_album_collection_loader_file_selected"]
