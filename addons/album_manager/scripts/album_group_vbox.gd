@@ -1,7 +1,7 @@
 @tool
 extends InspectorSpawner
 
-signal remove_this_panel
+signal remove_this_albumgroup
 
 const SONG_PANEL = preload("res://addons/album_manager/scenes/song_panel.tscn")
 
@@ -10,6 +10,7 @@ const SONG_PANEL = preload("res://addons/album_manager/scenes/song_panel.tscn")
 @onready var album_cover: TextureRect = %AlbumCover
 
 var album_ref : AlbumData
+#var albumlist_index : int
 
 func _ready() -> void:
 	inspector_below_here = %InspectorBelowHere
@@ -58,7 +59,11 @@ func instantiate_songpanel(song : Resource, song_list_ref : Array):
 	new_songpanel.remove_this_panel.connect(_on_songpanel_remove.bind(new_songpanel, song_list_ref))
 	songpanels_hflow.move_child(%AddItemBtn, -1)
 
+#func set_albumlist_index(idx : int):
+	#albumlist_index = idx
+
 func _on_add_item_pressed(song_list : Array):
+	EditorInterface.mark_scene_as_unsaved()
 	var new_songdata = SongData.new()
 	#for line in new_songdata.get_property_list():
 		#print(line)
@@ -81,4 +86,5 @@ func _on_album_name_btn_toggled(toggled_on: bool) -> void:
 		mini_inspector.visible = toggled_on
 
 func _on_remove_btn_pressed() -> void:
-	remove_this_panel.emit()
+	EditorInterface.mark_scene_as_unsaved()
+	remove_this_albumgroup.emit()

@@ -41,4 +41,5 @@ func print_prop(res : Resource):
 	print("---")
 
 func _on_remove_btn_pressed() -> void:
+	EditorInterface.mark_scene_as_unsaved()
 	remove_this_panel.emit()

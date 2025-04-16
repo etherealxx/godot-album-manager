@@ -25,6 +25,7 @@ layout_mode = 2
 
 [node name="RemoveBtn" type="Button" parent="AlbumTitleHbox"]
 layout_mode = 2
+tooltip_text = "Remove this AlbumData and every child SongData of it"
 icon = ExtResource("2_jt2ph")
 
 [node name="AlbumCover" type="TextureRect" parent="AlbumTitleHbox"]
@@ -53,6 +54,7 @@ metadata/_edit_lock_ = true
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 210)
 layout_mode = 2
+tooltip_text = "Add a new SongData"
 text = "+"
 
 [node name="Spacer" type="Control" parent="."]

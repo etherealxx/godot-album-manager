@@ -47,6 +47,7 @@ vertical_alignment = 1
 
 [node name="RemoveBtn" type="Button" parent="PanelUIHbox/PanelUIVbox/HBoxContainer"]
 layout_mode = 2
+tooltip_text = "Remove this SongData"
 icon = ExtResource("4_7n476")
 
 [node name="InspectorBelowHere" type="Node" parent="PanelUIHbox/PanelUIVbox"]

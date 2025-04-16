@@ -23,6 +23,8 @@ func load_addon_mainscreen():
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		album_manager_node.refresh.connect(_on_addon_refresh)
+		#scene_saved.connect(album_manager_node._on_any_scene_saved)
+		
 		#EditorInterface.get_inspector().edited_object_changed.connect(_on_addon_refresh)
 
 func _exit_tree() -> void:
@@ -48,12 +50,14 @@ func _on_addon_refresh():
 	var editor_main_screen : Node = EditorInterface.get_editor_main_screen()
 	if editor_main_screen.is_ancestor_of(album_manager_node):
 		album_manager_node.refresh.disconnect(_on_addon_refresh)
+		#scene_saved.disconnect(album_manager_node._on_any_scene_saved)
 		album_manager_node.queue_free()
 		#remove_inspector_plugin(inspector_plugin_inst)
 		load_addon_mainscreen()
 		album_manager_node.refresh.connect(_on_addon_refresh)
+		#scene_saved.connect(album_manager_node._on_any_scene_saved)
 		album_manager_node.visible = true
-		print("addon refreshed")
+		print("Album Manager refreshed")
 		print("---")
 		
 		
