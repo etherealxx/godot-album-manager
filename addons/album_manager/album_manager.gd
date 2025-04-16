@@ -30,6 +30,7 @@ func _ready() -> void:
 func _exit_tree() -> void:
 	if Engine.is_editor_hint():
 		if album_manager_node:
+			album_manager_node.attempt_save_resource_changes()
 			album_manager_node.queue_free()
 		#remove_inspector_plugin(inspector_plugin_inst)
 
@@ -59,5 +60,8 @@ func _on_addon_refresh():
 		album_manager_node.visible = true
 		print("Album Manager refreshed")
 		print("---")
-		
-		
+
+#func _save_external_data() -> void:
+	#if album_manager_node:
+		##@TODO currently it makes saving the resource twice. but might worth because it also saves before closing
+		#album_manager_node.attempt_save_resource_changes()

@@ -25,12 +25,15 @@ var current_albumcol_path_pair : Dictionary[String, AlbumCollection]
 
 func _on_refresh_btn_pressed() -> void:
 	print("---")
+	attempt_save_resource_changes()
+	refresh.emit()
+
+func attempt_save_resource_changes():
 	if not current_albumcol_path_pair.is_empty():
 		var album_col_path_key : String = current_albumcol_path_pair.keys()[0]
 		if FileAccess.file_exists(album_col_path_key):
 			ResourceSaver.save(current_albumcol_path_pair[album_col_path_key], album_col_path_key)
 			print("Changes to resource %s saved." % album_col_path_key)
-	refresh.emit()
 
 func _ready() -> void:
 	album_collection_loader.hide()
