@@ -59,6 +59,9 @@ func instantiate_songpanel(song : Resource, song_list_ref : Array):
 	new_songpanel.remove_this_panel.connect(_on_songpanel_remove.bind(new_songpanel, song_list_ref))
 	songpanels_hflow.move_child(%AddItemBtn, -1)
 
+func get_songpanel_list() -> Node:
+	return songpanels_hflow
+
 #func set_albumlist_index(idx : int):
 	#albumlist_index = idx
 

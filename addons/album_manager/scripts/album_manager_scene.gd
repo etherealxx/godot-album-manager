@@ -5,6 +5,7 @@ signal refresh
 
 const ADDON_SETTINGS_FILE_PATH = "res://addons/album_manager/settings.cfg"
 const ARRAY_NAME = "album_list"
+const AUTOSAVE_AFTER_INPUT_COOLDOWN := 2.0 # seconds
 
 #@export var album : AlbumData
 #@export var album_collection : AlbumCollection # unused, just for checking
@@ -14,6 +15,7 @@ const ARRAY_NAME = "album_list"
 @onready var imported_path: TextEdit = %ImportedPath
 @onready var create_new_btn: Button = %CreateNewBtn
 @onready var close_current_btn: Button = %CloseCurrentBtn
+@onready var autosave_cooldown_timer: Timer = $AutosaveCooldownTimer
 
 enum Mode {LOAD_EXISTING, CREATE_NEW}
 
@@ -28,16 +30,26 @@ func _on_refresh_btn_pressed() -> void:
 	attempt_save_resource_changes()
 	refresh.emit()
 
-func attempt_save_resource_changes():
+func attempt_save_resource_changes(do_print_message := true):
 	if not current_albumcol_path_pair.is_empty():
 		var album_col_path_key : String = current_albumcol_path_pair.keys()[0]
 		if FileAccess.file_exists(album_col_path_key):
 			ResourceSaver.save(current_albumcol_path_pair[album_col_path_key], album_col_path_key)
-			print("Changes to resource %s saved." % album_col_path_key)
+			if do_print_message:
+				print("Changes to resource %s saved." % album_col_path_key)
+
+func save_on_property_changed():
+	if autosave_cooldown_timer.get_time_left() == 0.0:
+		autosave_cooldown_timer.start()
+		attempt_save_resource_changes(false)
+
+func _on_autosave_cooldown_timer_timeout() -> void:
+	attempt_save_resource_changes(false)
 
 func _ready() -> void:
 	album_collection_loader.hide()
 	close_current_btn.hide()
+	autosave_cooldown_timer.wait_time = AUTOSAVE_AFTER_INPUT_COOLDOWN
 	if Engine.is_editor_hint():
 		if FileAccess.file_exists(ADDON_SETTINGS_FILE_PATH):
 			loaded_settings.load(ADDON_SETTINGS_FILE_PATH)
@@ -59,6 +71,7 @@ func attempt_load_album_collection(path : String) -> bool: # return the success 
 			return false
 			
 		main_ui_vbox.init_albumgroups(album_collection, ARRAY_NAME)
+		main_ui_vbox.connect_signals_to_save(save_on_property_changed)
 		current_albumcol_path_pair[path] = album_collection
 		return true
 		

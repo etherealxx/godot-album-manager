@@ -2,6 +2,8 @@
 extends Container
 class_name InspectorSpawner
 
+signal property_changed
+
 const INTERNAL_RESOURCE_PROP_NAMES := \
 	["resource_local_to_scene", "resource_name", "metadata/_custom_type_script"]
 
@@ -120,6 +122,7 @@ func _prop_changed(p_property: String, p_value, p_field: StringName, p_changing:
 	res_to_edit_ref.set(p_property, p_value)
 	if typeof(p_value) >= TYPE_ARRAY:
 		propname_edprop_map[p_property].update_property()
+	property_changed.emit()
 
 func _prop_selected(p_path:String, p_focusable: int) -> void:
 	for edprop in mini_inspector_vbox.get_children():

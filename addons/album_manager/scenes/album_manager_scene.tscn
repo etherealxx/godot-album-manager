@@ -128,8 +128,13 @@ ok_button_text = "Open"
 file_mode = 0
 filters = PackedStringArray("*.res", "*.tres")
 
+[node name="AutosaveCooldownTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="pressed" from="UILayoutHbox/MainAddonVbox/ToolbarHbox/RefreshBtn" to="." method="_on_refresh_btn_pressed"]
 [connection signal="pressed" from="UILayoutHbox/MainAddonVbox/ToolbarHbox/CreateNewBtn" to="." method="_on_create_new_btn_pressed"]
 [connection signal="pressed" from="UILayoutHbox/MainAddonVbox/ToolbarHbox/ImportResourceHbox/ImportBtn" to="." method="_on_import_btn_pressed"]
 [connection signal="pressed" from="UILayoutHbox/MainAddonVbox/ToolbarHbox/CloseCurrentBtn" to="." method="_on_close_current_btn_pressed"]
 [connection signal="file_selected" from="AlbumCollectionLoader" to="." method="_on_album_collection_loader_file_selected"]
+[connection signal="timeout" from="AutosaveCooldownTimer" to="." method="_on_autosave_cooldown_timer_timeout"]

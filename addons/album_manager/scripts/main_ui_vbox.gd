@@ -38,6 +38,15 @@ func clear_albumgroup():
 			queue_free()
 	add_item_btn.hide()
 
+func connect_signals_to_save(on_save_callable : Callable):
+	for albumgroup in self.get_children():
+		if albumgroup.is_in_group("albumgroup") and ( albumgroup is InspectorSpawner ):
+			albumgroup.property_changed.connect(on_save_callable)
+			var panel_list_node : Node = albumgroup.get_songpanel_list()
+			for songpanel in panel_list_node.get_children():
+				if songpanel.is_in_group("songpanel") and ( songpanel is InspectorSpawner ):
+					songpanel.property_changed.connect(on_save_callable)
+
 func _on_add_item_pressed(album_list : Array):
 	EditorInterface.mark_scene_as_unsaved()
 	var new_albumdata = AlbumData.new()
